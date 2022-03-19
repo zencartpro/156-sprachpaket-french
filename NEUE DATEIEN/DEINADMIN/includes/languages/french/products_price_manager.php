@@ -1,0 +1,122 @@
+<?php
+/**
+ * @package admin
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: products_price_manager.php 6444 2019-06-30 10:06:04Z webchills $
+ * @translate German/French klartexter
+ */
+
+
+define('HEADING_TITLE', 'Gestionnaire de prix d\'article');
+define('HEADING_TITLE_PRODUCT_SELECT','Veuillez sélectionner une catégorie d\'articles pour voir les informations sur les prix à partir de ...');
+define('TABLE_HEADING_PRODUCTS', 'Articles');
+define('TABLE_HEADING_PRODUCTS_MODEL','Numéro d\'article');
+define('TABLE_HEADING_PRODUCTS_PRICE', 'Prix | Prix spécial | Vente');
+define('TABLE_HEADING_PRODUCTS_PERCENTAGE','Pourcentage');
+define('TABLE_HEADING_AVAILABLE_DATE', 'Disponible auprès de');
+define('TABLE_HEADING_EXPIRES_DATE','Date d\'expiration');
+define('TABLE_HEADING_STATUS', 'Statut');
+define('TABLE_HEADING_ACTION', 'Action');
+define('TEXT_PRODUCT_INFO', 'Info d\'article:');
+define('TEXT_PRODUCTS_PRICE_INFO', 'Info prix article:');
+define('TEXT_PRODUCTS_MODEL','Numéro d\'article:');
+define('TEXT_PRICE', 'Prix');
+define('TEXT_PRICE_NET', 'Prix (hors taxe)');
+define('TEXT_PRICE_GROSS', 'Prix (incl. taxes)');
+define('TEXT_PRODUCT_AVAILABLE_DATE', 'Disponible auprès de:');
+define('TEXT_PRODUCTS_STATUS', 'Statut des articles:');
+define('TEXT_PRODUCT_AVAILABLE', 'Activement');
+define('TEXT_PRODUCT_NOT_AVAILABLE', 'Non active');
+define('TEXT_PRODUCT_INFO_NONE', 'Veuillez sélectionner un article ...');
+define('TEXT_PRODUCT_IS_FREE','L\'article est gratuit:');
+define('TEXT_PRODUCTS_IS_FREE_EDIT','<br />*Article marqué GRATUIT');
+define('TEXT_PRODUCT_IS_CALL','Veuillez demander le prix:');
+define('TEXT_PRODUCTS_IS_CALL_EDIT','<br />*L\'article est marqué "Veuillez demander le prix".');
+define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES','Prix déterminé par les attributs:');
+define('TEXT_PRODUCT_IS_PRICED_BY_ATTRIBUTE','Oui');
+define('TEXT_PRODUCT_NOT_PRICED_BY_ATTRIBUTE','Non');
+define('TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT','<br />*Le prix affiché contient le prix d\'attribut de groupe le plus bas plus le prix de base.');
+define('TEXT_PRODUCTS_MIXED','Article Nombre minimum de commande/numéro de commande Mélange:');
+define('TEXT_PRODUCTS_MIXED_DISCOUNT_QUANTITY', 'Le rabais par unité s\'applique aux attributs mixtes.');
+define('TEXT_PRODUCTS_QUANTITY_MIN_RETAIL','Article Achat minimum:');
+define('TEXT_PRODUCTS_QUANTITY_UNITS_RETAIL','Unité de stock d\'article:');
+define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL','Article maximum d\'achat:');
+define('TEXT_PRODUCTS_QUANTITY_MAX_RETAIL_EDIT','0= Illimité<br />1= Pas de case pour les quantités/valeurs maximales');
+define('TEXT_FEATURED_PRODUCT_INFO', 'Articles recommandés Info:');
+define('TEXT_FEATURED_PRODUCT', 'Articles:');
+define('TEXT_FEATURED_EXPIRES_DATE', 'date limite d\'utilisation:');
+define('TEXT_FEATURED_AVAILABLE_DATE', 'disponible auprès de:');
+define('TEXT_FEATURED_PRODUCTS_STATUS', 'Statut d\'article recommandé:');
+define('TEXT_FEATURED_PRODUCT_AVAILABLE', 'Activement');
+define('TEXT_FEATURED_PRODUCT_NOT_AVAILABLE', 'Inactif');
+define('TEXT_FEATURED_DISABLED', '<strong>REMARQUE : L\'information "Articles recommandés" est désactivée, expirée ou actuellement inactive.</strong>');
+define('TEXT_FEATURED_CONFIRM_DELETE', 'Veuillez confirmer que vous souhaitez supprimer le statut "Article recommandé" de cet article.');
+define('TEXT_SPECIALS_PRODUCT', 'Articles:');
+define('TEXT_SPECIALS_SPECIAL_PRICE', 'Prix spécial:');
+define('TEXT_SPECIALS_SPECIAL_PRICE_NET', 'Prix spécial: (hors taxes)');
+define('TEXT_SPECIALS_SPECIAL_PRICE_GROSS', 'Prix spécial: (incl. taxes)');
+define('TEXT_SPECIALS_EXPIRES_DATE', 'date limite d\'utilisation:');
+define('TEXT_SPECIALS_AVAILABLE_DATE', 'Disponible auprès de:');
+define('TEXT_SPECIALS_PRICE_TIP', '<b>Note spéciale:</b><ul><li>Vous pouvez spécifier un pourcentage de réduction de prix dans la zone des prix spéciaux, par exemple: <b>20%</b></li><li>Si vous spécifiez un nouveau prix, la décimale doit être séparée par un \'.\' (point décimal), exemple: <b>49.99</b></li><li>S\'il n\'y a pas de date d\'expiration, laissez le champ de la date d\'expiration vide.</li></ul>');
+define('TEXT_SPECIALS_PRODUCT_INFO', 'Informations sur les prix spéciaux:');
+define('TEXT_SPECIALS_PRODUCTS_STATUS', 'Offre spéciale Statut:');
+define('TEXT_SPECIALS_PRODUCT_AVAILABLE', 'Activement');
+define('TEXT_SPECIALS_PRODUCT_NOT_AVAILABLE', 'Inactif');
+define('TEXT_SPECIALS_NO_GIFTS','Pas d\'offres spéciales aux bons d\'achat ');
+define('TEXT_SPECIAL_DISABLED', '<strong>REMARQUE : l\'information "Offre spéciale" est désactivée, expirée ou actuellement inactive.</strong>');
+define('TEXT_SPECIALS_CONFIRM_DELETE', 'Veuillez confirmer que vous souhaitez supprimer le statut "offre spéciale" de cet article.');
+define('TEXT_INFO_DATE_ADDED', 'Créé le:');
+define('TEXT_INFO_LAST_MODIFIED', 'Dernière modification:');
+define('TEXT_INFO_NEW_PRICE', 'Nouveau prix:');
+define('TEXT_INFO_ORIGINAL_PRICE', 'Prix original:');
+define('TEXT_INFO_PERCENTAGE', 'Pourcentage:');
+define('TEXT_INFO_AVAILABLE_DATE', 'Disponible auprès de:');
+define('TEXT_INFO_EXPIRES_DATE', 'date limite d\'utilisation:');
+define('TEXT_INFO_STATUS_CHANGE', 'Dernière modification de statut:');
+define('TEXT_IMAGE_NONEXISTENT', 'L\'image n\'existe pas');
+define('TEXT_INFO_HEADING_DELETE_FEATURED', 'Supprimer les articles recommandés');
+define('TEXT_INFO_DELETE_INTRO', 'Êtes-vous sûr de vouloir supprimer ce statut?');
+define('TEXT_ATTRIBUTES_INSERT_INFO', '<strong>Définissez les paramètres des attributs, puis cliquez sur Insérer pour rendre les modifications effectives.</strong>');
+define('TEXT_PRICED_BY_ATTRIBUTES', 'Prix déterminé par les attributs');
+define('TEXT_PRODUCTS_PRICE', 'Prix des articles: ');
+define('TEXT_SPECIAL_PRICE', 'Prix spécial: ');
+define('TEXT_SALE_PRICE', 'Prix de vente: ');
+define('TEXT_FREE', 'GRATUIT');
+define('TEXT_CALL_FOR_PRICE', 'Veuillez demander le prix');
+define('TEXT_ADD_ADDITIONAL_DISCOUNT', DISCOUNT_QTY_ADD . ' Ajouter une remise sur quantité vide:');
+define('TEXT_BLANKS_INFO','Toutes les 0 réductions de quantité sont supprimées lors de la mise à jour.');
+define('TEXT_INFO_NO_DISCOUNTS', 'Aucune réduction de quantité n\'a été définie');
+define('TEXT_PRODUCTS_DISCOUNT_QTY_TITLE', 'Niveau de remise sur volume');
+define('TEXT_PRODUCTS_DISCOUNT','Rabais');
+define('TEXT_PRODUCTS_DISCOUNT_QTY','Quantité minimale');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE','Valeur de réduction');
+define('TEXT_PRODUCTS_DISCOUNT_TYPE','Typ');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH','Prix de calcul:');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED','Prix prolongé:');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE_EACH_TAX','Calculer <br />Prix: &nbsp; imposable:');
+define('TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED_TAX','Étendu <br />Prix: &nbsp; imposable:');
+define('TEXT_EACH','jamais');
+define('TEXT_EXTENDED','Somme');
+define('TEXT_DISCOUNT_TYPE_INFO', 'Informations sur la remise d\'article');
+define('TEXT_DISCOUNT_TYPE','Type de rabais:');
+define('TEXT_DISCOUNT_TYPE_FROM', 'Prix discount de:');
+define('DISCOUNT_TYPE_DROPDOWN_0','Aucun');
+define('DISCOUNT_TYPE_DROPDOWN_1','Pourcentage');
+define('DISCOUNT_TYPE_DROPDOWN_2','Prix actuel');
+define('DISCOUNT_TYPE_DROPDOWN_3','Montant hors');
+define('DISCOUNT_TYPE_FROM_DROPDOWN_0','Prix');
+define('DISCOUNT_TYPE_FROM_DROPDOWN_1','Prix spécial');
+define('TEXT_UPDATE_COMMIT','Mettre à jour tous les changements dans la vue courante');
+define('TEXT_PRODUCTS_TAX_CLASS', 'Tranche d\'imposition:');
+define('TEXT_INFO_MASTER_CATEGORIES_ID_WARNING', '<strong>Avertissement:</strong> Les % ID de la catégorie principale de l\'article ne correspondent pas aux % ID de la catégorie actuelle et les articles ne sont pas liés!');
+define('TEXT_INFO_MASTER_CATEGORIES_CURRENT', ' L\'ID de la catégorie actuelle %s correspond à l\'ID de la catégorie principale %s.');
+define('TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE_TO_CURRENT', 'Mettre à jour les % d\'ID de catégorie principale pour qu\'ils correspondent aux % d\'ID de catégorie actuels.');
+define('PRODUCT_WARNING_UPDATE', 'Veuillez apporter vos modifications, puis cliquez sur Mettre à jour pour enregistrer vos modifications');
+define('PRODUCT_UPDATE_SUCCESS', 'Les modifications de l\'article ont été mises à jour avec succès!');
+define('PRODUCT_WARNING_UPDATE_CANCEL', 'Les modifications n\'ont pas été sauvegardées et supprimées. ...');
+define('TEXT_INFO_EDIT_CAUTION', '<strong>Cliquez ici pour commencer à éditer ...</strong>');
+define('TEXT_INFO_PREVIEW_ONLY', 'Aperçu seulement .... Paramètres de prix actuels .... Aperçu UNIQUEMENT');
+define('TEXT_INFO_UPDATE_REMINDER', '<strong>Modifiez les informations de l\'élément, puis cliquez sur Mettre à jour pour l\'enregistrer.</strong>');
+define('BUTTON_ADDITITONAL_ACTIONS', 'Autres actions');
